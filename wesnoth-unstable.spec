@@ -1,0 +1,155 @@
+# TODO add a init file for server, if it is worth
+# split data if we can force a rpm to be noarch
+
+%define sname wesnoth
+
+Summary:	Fantasy turn-based strategy game
+Name:		wesnoth-unstable
+Version:	1.9.10
+Release:	%mkrel 1
+License:	GPLv2+
+Group:		Games/Strategy
+Url:		http://www.wesnoth.org/
+Source0:	http://downloads.sourceforge.net/%{sname}/%{sname}-%{version}.tar.bz2
+Source1:	%{sname}-icon.png
+BuildRequires:	SDL_image-devel
+BuildRequires:	SDL_ttf-devel
+BuildRequires:	SDL_net-devel
+BuildRequires:	SDL_mixer-devel
+BuildRequires:	boost-devel
+BuildRequires:	oggvorbis-devel
+BuildRequires:	imagemagick
+BuildRequires:	python-devel
+BuildRequires:	pango-devel
+BuildRequires:	lua-devel >= 5.1.4
+BuildRequires:	cmake
+BuildRoot:	%{_tmppath}/%{name}-%{version}
+Conflicts:	%{sname}
+
+%description
+Battle for Wesnoth is a fantasy turn-based strategy game.
+Battle for control of villages, using variety of units which
+have advantages and disadvantages in different types of terrains and
+against different types of attacks. Units gain experience and advance
+levels, and are carried over from one scenario to the next campaign.
+
+%package -n %{name}-server
+Summary:	Server for "Battle fo Wesnoth" game
+Group:		Games/Strategy
+Conflicts:	%{sname}-server
+
+%description -n	%{name}-server
+This package contains "Battle for wesnoth" server, used to play multiplayer
+game without needing to install the full client.
+
+%prep
+%setup -q -n %{sname}-%{version}
+
+%build
+export LDFLAGS="$LDFLAGS -lpthread"
+%cmake -DENABLE_STRICT_COMPILATION=OFF \
+	-DBINDIR=%{_gamesbindir} \
+	-DDATAROOTDIR=%{_gamesdatadir} \
+	-DDESKTOPDIR=%{_datadir}/applications \
+	-DDOCDIR=%{_datadir}/doc/%{sname} \
+	-DMANDIR=%{_mandir} -DICONDIR=%{_iconsdir}
+%make
+
+%install
+rm -rf %{buildroot}
+
+%makeinstall_std -C build
+
+%find_lang %{sname} --all-name
+
+%if %mdkversion < 200900
+%post
+%{update_menus}
+%endif
+
+%if %mdkversion < 200900
+%postun
+%{clean_menus}
+%endif
+
+%clean
+rm -rf %{buildroot}
+
+%files -f %{sname}.lang
+%defattr(-,root,root,0755)
+%doc README
+%exclude %{_gamesbindir}/%{sname}d
+%{_gamesbindir}/*
+%{_gamesdatadir}/%{sname}
+%{_mandir}/*/%{sname}.*
+#%{_mandir}/*/%{name}_editor.*
+#%lang(ca) %{_mandir}/ca_ES@valencia/*/%{name}.*
+%lang(cs) %{_mandir}/cs/*/%{sname}.*
+#%lang(da) %{_mandir}/da/*/%{name}.*
+%lang(de) %{_mandir}/de/*/%{sname}.*
+%lang(en) %{_mandir}/en_GB/*/%{sname}.*
+#%lang(es) %{_mandir}/es/*/%{sname}.*
+%lang(et) %{_mandir}/et/*/%{sname}.*
+#%lang(fi) %{_mandir}/fi/*/%{sname}.*
+%lang(fr) %{_mandir}/fr/*/%{sname}.*
+%lang(gl) %{_mandir}/gl/*/%{sname}.*
+%lang(hu) %{_mandir}/hu/*/%{sname}.*
+%lang(id) %{_mandir}/id/*/%{sname}.*
+#%lang(it) %{_mandir}/it/*/%{sname}.*
+#%lang(ja) %{_mandir}/ja/*/%{sname}.*
+%lang(lt) %{_mandir}/lt/*/%{sname}.*
+#%lang(nl) %{_mandir}/nl/*/%{name}.*
+%lang(pl) %{_mandir}/pl/*/%{sname}.*
+#%lang(pt) %{_mandir}/pt_BR/*/%{sname}.*
+#%lang(ca) %{_mandir}/racv/*/%{name}.*
+%lang(sk) %{_mandir}/sk/*/%{sname}.*
+#%lang(sr) %{_mandir}/sr/*/%{sname}.*
+#%lang(sr@latin) %{_mandir}/sr@latin/*/%{sname}.*
+#%lang(sr@ijekavian) %{_mandir}/sr@ijekavian/*/%{sname}.*
+#%lang(sr@ijekavianlatin) %{_mandir}/sr@ijekavianlatin/*/%{sname}.*
+#lang(sv) %{_mandir}/sv/*/%{name}.*
+#%lang(tr) %{_mandir}/tr/*/%{sname}.*
+%lang(ru) %{_mandir}/ru/*/%{sname}.*
+%lang(zh_CN) %{_mandir}/zh_CN/*/%{sname}.*
+%lang(zh_TW) %{_mandir}/zh_TW/*/%{sname}.*
+%{_datadir}/applications/*
+%{_datadir}/doc/%{sname}/*
+%{_iconsdir}/*
+#{_libdir}/libana.so
+#%exclude %{_includedir}/ana/*
+#%exclude %{_libdir}/libana-static.a
+
+%files -n %{name}-server
+%defattr(-,root,root,0755)
+%{_gamesbindir}/%{sname}d
+%{_mandir}/*/%{sname}d.*
+#%lang(ca) %{_mandir}/ca_ES@valencia/*/%{name}d.*
+%lang(cs) %{_mandir}/cs/*/%{sname}d.*
+#%lang(da) %{_mandir}/da/*/%{name}d.*
+%lang(de) %{_mandir}/de/*/%{sname}d.*
+%lang(en) %{_mandir}/en_GB/*/%{sname}d.*
+%lang(es) %{_mandir}/es/*/%{sname}d.*
+%lang(et) %{_mandir}/et/*/%{sname}d.*
+%lang(fi) %{_mandir}/fi/*/%{sname}d.*
+%lang(fr) %{_mandir}/fr/*/%{sname}d.*
+%lang(gl) %{_mandir}/gl/*/%{sname}d.*
+%lang(hu) %{_mandir}/hu/*/%{sname}d.*
+%lang(id) %{_mandir}/id/*/%{sname}d.*
+%lang(it) %{_mandir}/it/*/%{sname}d.*
+%lang(ja) %{_mandir}/ja/*/%{sname}d.*
+%lang(lt) %{_mandir}/lt/*/%{sname}d.*
+#%lang(nl) %{_mandir}/nl/*/%{name}d.*
+%lang(pl) %{_mandir}/pl/*/%{sname}d.*
+%lang(pt) %{_mandir}/pt_BR/*/%{sname}d.*
+#%lang(ca) %{_mandir}/racv/*/%{name}d.*
+%lang(sk) %{_mandir}/sk/*/%{sname}d.*
+%lang(sr) %{_mandir}/sr/*/%{sname}d.*
+%lang(sr@latin) %{_mandir}/sr@latin/*/%{sname}d.*
+%lang(sr@ijekavian) %{_mandir}/sr@ijekavian/*/%{sname}d.*
+%lang(sr@ijekavianlatin) %{_mandir}/sr@ijekavianlatin/*/%{sname}d.*
+#lang(sv) %{_mandir}/sv/*/%{name}d.*
+%lang(tr) %{_mandir}/tr/*/%{sname}d.*
+%lang(ru) %{_mandir}/ru/*/%{sname}d.*
+%lang(zh_CN) %{_mandir}/zh_CN/*/%{sname}d.*
+%lang(zh_TW) %{_mandir}/zh_TW/*/%{sname}d.*
+
