@@ -20,13 +20,10 @@ BuildRequires:	boost-devel
 BuildRequires:	oggvorbis-devel
 BuildRequires:	imagemagick
 BuildRequires:	python-devel
-BuildRequires:	pango-devel
 BuildRequires:	lua-devel >= 5.1.4
 BuildRequires:	cmake
-# We need this because Matthew Dawkins breaks things in Cooker
-%if %{mdvver} >= 201200
 BuildRequires:	pkgconfig(pangocairo)
-%endif
+BuildRequires:	pkgconfig(pango)
 BuildRequires:	fontconfig-devel
 BuildRequires:	dbus-devel
 BuildRequires:	fribidi-devel
