@@ -23,6 +23,13 @@ BuildRequires:	python-devel
 BuildRequires:	pango-devel
 BuildRequires:	lua-devel >= 5.1.4
 BuildRequires:	cmake
+# We need this because Matthew Dawkins breaks things in Cooker
+%if %{mdvver} >= 201200
+BuildRequires:	pkgconfig(pangocairo)
+%endif
+BuildRequires:	fontconfig-devel
+BuildRequires:	dbus-devel
+BuildRequires:	fribidi-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 Conflicts:	%{sname}
 
