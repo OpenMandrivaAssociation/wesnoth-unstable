@@ -5,7 +5,7 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.9.13
+Version:	1.9.14
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Strategy
