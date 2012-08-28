@@ -5,29 +5,28 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.9.14
+Version:	1.11.0
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
 Source0:	http://downloads.sourceforge.net/%{sname}/%{sname}-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
-BuildRequires:	SDL_image-devel
+BuildRequires:	pkgconfig(SDL_image)
 BuildRequires:	SDL_ttf-devel
 BuildRequires:	SDL_net-devel
-BuildRequires:	SDL_mixer-devel
+BuildRequires:	pkgconfig(SDL_mixer)
 BuildRequires:	boost-devel
-BuildRequires:	oggvorbis-devel
+BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	imagemagick
 BuildRequires:	python-devel
-BuildRequires:	lua-devel >= 5.1.4
+BuildRequires:	pkgconfig(lua)
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(pangocairo)
 BuildRequires:	pkgconfig(pango)
-BuildRequires:	fontconfig-devel
-BuildRequires:	dbus-devel
-BuildRequires:	fribidi-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(fribidi)
 Conflicts:	%{sname}
 
 %description
