@@ -5,28 +5,29 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.11.1
+Version:	1.11.2
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
 Source0:	http://downloads.sourceforge.net/%{sname}/%{sname}-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
-BuildRequires:	pkgconfig(SDL_image)
-BuildRequires:	SDL_ttf-devel
-BuildRequires:	SDL_net-devel
-BuildRequires:	pkgconfig(SDL_mixer)
-BuildRequires:	boost-devel
-BuildRequires:	pkgconfig(vorbis)
-BuildRequires:	imagemagick
-BuildRequires:	python-devel
-BuildRequires:	pkgconfig(lua)
+
 BuildRequires:	cmake
-BuildRequires:	pkgconfig(pangocairo)
-BuildRequires:	pkgconfig(pango)
-BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:	imagemagick
+BuildRequires:	boost-devel
 BuildRequires:	pkgconfig(dbus-1)
+BuildRequires:	pkgconfig(fontconfig)
 BuildRequires:	pkgconfig(fribidi)
+BuildRequires:	pkgconfig(lua)
+BuildRequires:	pkgconfig(pango)
+BuildRequires:	pkgconfig(pangocairo)
+BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(SDL_image)
+BuildRequires:	pkgconfig(SDL_mixer)
+BuildRequires:	pkgconfig(SDL_net)
+BuildRequires:	pkgconfig(SDL_ttf)
+BuildRequires:	pkgconfig(vorbis)
 Conflicts:	%{sname}
 
 %description
@@ -59,18 +60,12 @@ export LDFLAGS="$LDFLAGS -lpthread"
 %make
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std -C build
 
 %find_lang %{sname} --with-man
 %find_lang %{sname}d --with-man
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{sname}.lang
-%defattr(-,root,root,0755)
 %doc README
 %exclude %{_gamesbindir}/%{sname}d
 %{_gamesbindir}/*
@@ -81,7 +76,6 @@ rm -rf %{buildroot}
 %{_iconsdir}/*
 
 %files -n %{name}-server -f %{sname}d.lang
-%defattr(-,root,root,0755)
 %{_gamesbindir}/%{sname}d
 %{_mandir}/*/%{sname}d.*
 
