@@ -48,6 +48,7 @@ game without needing to install the full client.
 
 %prep
 %setup -q -n %{sname}-%{version}
+find . -name ".gitignore" -delete
 
 %build
 export LDFLAGS="$LDFLAGS -lpthread"
