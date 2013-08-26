@@ -5,7 +5,7 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.11.5
+Version:	1.11.6
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
@@ -37,14 +37,32 @@ have advantages and disadvantages in different types of terrains and
 against different types of attacks. Units gain experience and advance
 levels, and are carried over from one scenario to the next campaign.
 
+%files -f %{sname}.lang
+%doc README
+%exclude %{_gamesbindir}/%{sname}d
+%{_gamesbindir}/*
+%{_gamesdatadir}/%{sname}
+%{_mandir}/*/%{sname}.*
+%{_datadir}/applications/*
+%{_datadir}/doc/%{sname}/*
+%{_iconsdir}/*
+
+#----------------------------------------------------------------------------
+
 %package -n %{name}-server
 Summary:	Server for "Battle fo Wesnoth" game
 Group:		Games/Strategy
 Conflicts:	%{sname}-server
 
-%description -n	%{name}-server
+%description -n %{name}-server
 This package contains "Battle for wesnoth" server, used to play multiplayer
 game without needing to install the full client.
+
+%files -n %{name}-server -f %{sname}d.lang
+%{_gamesbindir}/%{sname}d
+%{_mandir}/*/%{sname}d.*
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -q -n %{sname}-%{version}
@@ -65,18 +83,4 @@ export LDFLAGS="$LDFLAGS -lpthread"
 
 %find_lang %{sname} --with-man
 %find_lang %{sname}d --with-man
-
-%files -f %{sname}.lang
-%doc README
-%exclude %{_gamesbindir}/%{sname}d
-%{_gamesbindir}/*
-%{_gamesdatadir}/%{sname}
-%{_mandir}/*/%{sname}.*
-%{_datadir}/applications/*
-%{_datadir}/doc/%{sname}/*
-%{_iconsdir}/*
-
-%files -n %{name}-server -f %{sname}d.lang
-%{_gamesbindir}/%{sname}d
-%{_mandir}/*/%{sname}d.*
 
