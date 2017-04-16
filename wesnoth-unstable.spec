@@ -5,8 +5,8 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.11.8
-Release:	2
+Version:	1.13.7
+Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
@@ -38,7 +38,6 @@ against different types of attacks. Units gain experience and advance
 levels, and are carried over from one scenario to the next campaign.
 
 %files -f %{sname}.lang
-%doc README
 %exclude %{_gamesbindir}/%{sname}d
 %{_gamesbindir}/*
 %{_gamesdatadir}/%{sname}
