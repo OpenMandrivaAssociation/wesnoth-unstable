@@ -5,7 +5,7 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.13.7
+Version:	1.13.10
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
@@ -23,10 +23,10 @@ BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(pangocairo)
 BuildRequires:	pkgconfig(python)
-BuildRequires:	pkgconfig(SDL_image)
-BuildRequires:	pkgconfig(SDL_mixer)
-BuildRequires:	pkgconfig(SDL_net)
-BuildRequires:	pkgconfig(SDL_ttf)
+BuildRequires:	pkgconfig(SDL2_image)
+BuildRequires:	pkgconfig(SDL2_mixer)
+BuildRequires:	pkgconfig(SDL2_net)
+BuildRequires:	pkgconfig(SDL2_ttf)
 BuildRequires:	pkgconfig(vorbis)
 Conflicts:	%{sname}
 
@@ -82,4 +82,3 @@ export LDFLAGS="$LDFLAGS -lpthread"
 
 %find_lang %{sname} --with-man
 %find_lang %{sname}d --with-man
-
