@@ -14,13 +14,13 @@
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
 Version:	1.15.0
-Release:	0.git.2019.02.02
+Release:	0.git.2019.07.17
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
 #Source0:	http://downloads.sourceforge.net/%{sname}/%{sname}-%{version}.tar.bz2
 # Source taken from git master and repacked to tar.xz
-Source0:	wesnoth-master-2019.02.02.tar.xz
+Source0:	wesnoth-master-2019.07.17.tar.xz
 Source1:	%{sname}-icon.png
 
 BuildRequires:	cmake ninja
