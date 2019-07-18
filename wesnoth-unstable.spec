@@ -58,7 +58,7 @@ levels, and are carried over from one scenario to the next campaign.
 %{_datadir}/applications/*
 %{_datadir}/doc/%{sname}/*
 %{_iconsdir}/*
-%{_datadir}/metainfo/wesnoth.appdata.xml
+%{_datadir}/metainfo/org.wesnoth.Wesnoth.appdata.xml
 
 #----------------------------------------------------------------------------
 
