@@ -78,7 +78,7 @@ game without needing to install the full client.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{sname}-master
+%setup -q -n %{sname}-master-2019.07.17
 find . -name ".gitignore" -delete
 
 %build
