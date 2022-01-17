@@ -12,15 +12,13 @@
 %define sname wesnoth
 
 Summary:	Fantasy turn-based strategy game
-Name:		wesnoth-unstable
-Version:	1.15.0
-Release:	0.git.2019.07.17
+Name:		wesnoth
+Version:	1.17.0
+Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
-#Source0:	http://downloads.sourceforge.net/%{sname}/%{sname}-%{version}.tar.bz2
-# Source taken from git master and repacked to tar.xz
-Source0:	wesnoth-master-2019.07.17.tar.xz
+Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{name}-%{version}.tar.gz
 Source1:	%{sname}-icon.png
 
 BuildRequires:	cmake ninja
@@ -41,7 +39,9 @@ BuildRequires:	pkgconfig(SDL2_ttf)
 BuildRequires:	pkgconfig(systemd)
 BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libcrypto)
-Conflicts:	%{sname}
+BuildRequires:  pkgconfig(liblzma)
+BuildRequires:  pkgconfig(libzstd)
+Conflicts:	%{sname}-unstable
 
 %description
 Battle for Wesnoth is a fantasy turn-based strategy game.
@@ -65,7 +65,7 @@ levels, and are carried over from one scenario to the next campaign.
 %package -n %{name}-server
 Summary:	Server for "Battle fo Wesnoth" game
 Group:		Games/Strategy
-Conflicts:	%{sname}-server
+Conflicts:	%{sname}-unstable-server
 
 %description -n %{name}-server
 This package contains "Battle for wesnoth" server, used to play multiplayer
@@ -78,12 +78,15 @@ game without needing to install the full client.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{sname}-master-2019.07.17
+%setup -q -n %{sname}-%{version}
+%autopatch -p1
 find . -name ".gitignore" -delete
 
 %build
 export LDFLAGS="$LDFLAGS -lpthread"
-%cmake -DENABLE_STRICT_COMPILATION=OFF \
+%cmake \
+	-DENABLE_STRICT_COMPILATION=OFF \
+	-DENABLE_SHARED_LIBRARIES=OFF \
 	-DBINDIR=%{_bindir} \
 	-DDATAROOTDIR=%{_datadir} \
 	-DDESKTOPDIR=%{_datadir}/applications \
