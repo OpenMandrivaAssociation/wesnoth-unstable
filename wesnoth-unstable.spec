@@ -18,7 +18,7 @@ Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
-Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
 Source1:	%{sname}-icon.png
 
 BuildRequires:	cmake ninja
@@ -41,7 +41,7 @@ BuildRequires:	pkgconfig(vorbis)
 BuildRequires:	pkgconfig(libcrypto)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libzstd)
-Conflicts:	%{sname}-unstable
+Conflicts:	%{sname}
 
 %description
 Battle for Wesnoth is a fantasy turn-based strategy game.
@@ -65,7 +65,7 @@ levels, and are carried over from one scenario to the next campaign.
 %package -n %{name}-server
 Summary:	Server for "Battle fo Wesnoth" game
 Group:		Games/Strategy
-Conflicts:	%{sname}-unstable-server
+Conflicts:	%{sname}-server
 
 %description -n %{name}-server
 This package contains "Battle for wesnoth" server, used to play multiplayer
