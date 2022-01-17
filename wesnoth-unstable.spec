@@ -12,9 +12,9 @@
 %define sname wesnoth
 
 Summary:	Fantasy turn-based strategy game
-Name:		wesnoth
+Name:		wesnoth-unstable
 Version:	1.17.0
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
@@ -42,6 +42,7 @@ BuildRequires:	pkgconfig(libcrypto)
 BuildRequires:  pkgconfig(liblzma)
 BuildRequires:  pkgconfig(libzstd)
 Conflicts:	%{sname}
+Obsoletes:	wesnoth =< 1.17.0-2
 
 %description
 Battle for Wesnoth is a fantasy turn-based strategy game.
