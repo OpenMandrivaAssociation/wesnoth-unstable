@@ -18,7 +18,9 @@ Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
-Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
+# Looks like source from GH no longer contains lua submodules. Use tarball from wesnoth website instead.
+#Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
+Source0:	https://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
 
 BuildRequires:	cmake ninja
