@@ -13,7 +13,7 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.17.9
+Version:	1.17.10
 Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
@@ -22,6 +22,7 @@ Url:		http://www.wesnoth.org/
 #Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
 Source0:	https://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
+Patch0:		wesnoth-1.17.10-boost-1.81.patch
 
 BuildRequires:	cmake ninja
 BuildRequires:	imagemagick
@@ -81,8 +82,7 @@ game without needing to install the full client.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{sname}-%{version}
-%autopatch -p1
+%autosetup -p1 -n %{sname}-%{version}
 find . -name ".gitignore" -delete
 
 %build
