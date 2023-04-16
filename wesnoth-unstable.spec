@@ -27,6 +27,7 @@ BuildRequires:	cmake ninja
 BuildRequires:	imagemagick
 BuildRequires:	boost-devel
 BuildRequires:	readline-devel
+BuildRequires:  pkgconfig(libcurl)
 BuildRequires:	pkgconfig(dbus-1)
 BuildRequires:	pkgconfig(fontconfig)
 BuildRequires:	pkgconfig(fribidi)
