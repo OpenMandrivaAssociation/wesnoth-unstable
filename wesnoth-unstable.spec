@@ -1,6 +1,3 @@
-# Not while python2 mess is in use
-%global _python_bytecompile_build 0
-
 #Disable LTO on i686 and armv7 due to build fail because lack of memory (penguin).
 %ifarch %{ix86} %{arm}
 %define _disable_lto 1
@@ -14,7 +11,7 @@
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
 Version:	1.17.19
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Games/Strategy
 Url:		http://www.wesnoth.org/
@@ -22,6 +19,7 @@ Url:		http://www.wesnoth.org/
 #Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
 Source0:	https://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
+Patch0:		wesnoth-1.17.19-boost-1.83.patch
 
 BuildRequires:	cmake ninja
 BuildRequires:	imagemagick
@@ -34,7 +32,7 @@ BuildRequires:	pkgconfig(fribidi)
 BuildRequires:	pkgconfig(lua)
 BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(pangocairo)
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(SDL2_image)
 BuildRequires:	pkgconfig(SDL2_mixer)
 BuildRequires:	pkgconfig(SDL2_net)
@@ -85,8 +83,6 @@ game without needing to install the full client.
 %autosetup -p1 -n %{sname}-%{version}
 find . -name ".gitignore" -delete
 
-%build
-export LDFLAGS="$LDFLAGS -lpthread"
 %cmake \
 	-DENABLE_STRICT_COMPILATION=OFF \
 	-DENABLE_SHARED_LIBRARIES=OFF \
@@ -96,7 +92,9 @@ export LDFLAGS="$LDFLAGS -lpthread"
 	-DDOCDIR=%{_datadir}/doc/%{sname} \
 	-DMANDIR=%{_mandir} -DICONDIR=%{_iconsdir} \
 	-G Ninja
-%ninja_build
+
+%build
+%ninja_build -C build
 
 %install
 %ninja_install -C build
