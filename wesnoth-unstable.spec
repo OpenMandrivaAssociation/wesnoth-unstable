@@ -19,7 +19,7 @@ Url:		http://www.wesnoth.org/
 #Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
 Source0:	https://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
-Patch0:		wesnoth-1.17.19-boost-1.83.patch
+#Patch0:		wesnoth-1.17.19-boost-1.83.patch
 
 BuildRequires:	cmake ninja
 BuildRequires:	imagemagick
