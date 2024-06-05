@@ -10,11 +10,11 @@
 
 Summary:	Fantasy turn-based strategy game
 Name:		wesnoth-unstable
-Version:	1.17.26
-Release:	3
+Version:	1.19.0
+Release:	1
 License:	GPLv2+
 Group:		Games/Strategy
-Url:		http://www.wesnoth.org/
+Url:		https://www.wesnoth.org/
 # Looks like source from GH no longer contains lua submodules. Use tarball from wesnoth website instead.
 #Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
 Source0:	https://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
