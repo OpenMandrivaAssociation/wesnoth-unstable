@@ -19,7 +19,6 @@ Url:		https://www.wesnoth.org/
 #Source0:	https://github.com/wesnoth/wesnoth/archive/%{version}/%{sname}-%{version}.tar.gz
 Source0:	https://www.wesnoth.org/files/wesnoth-%{version}.tar.bz2
 Source1:	%{sname}-icon.png
-#Patch0:		wesnoth-1.17.19-boost-1.83.patch
 
 BuildRequires:	cmake ninja
 BuildRequires:	imagemagick
@@ -47,7 +46,6 @@ Conflicts:	%{sname}
 Obsoletes:	wesnoth =< 1.17.0-2
 
 %patchlist
-wesnoth-1.18.2-boost-1.86.patch
 
 %description
 Battle for Wesnoth is a fantasy turn-based strategy game.
