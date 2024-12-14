@@ -46,6 +46,7 @@ Conflicts:	%{sname}
 Obsoletes:	wesnoth =< 1.17.0-2
 
 %patchlist
+wesnoth-1.19.6-boost-1.87.patch
 
 %description
 Battle for Wesnoth is a fantasy turn-based strategy game.
@@ -86,6 +87,7 @@ game without needing to install the full client.
 find . -name ".gitignore" -delete
 
 %cmake \
+	-DENABLE_DISPLAY_REVISION=OFF \
 	-DENABLE_STRICT_COMPILATION=OFF \
 	-DENABLE_SHARED_LIBRARIES=OFF \
 	-DBINDIR=%{_bindir} \
